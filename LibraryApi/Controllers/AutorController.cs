@@ -53,9 +53,9 @@ public class AutorController : ControllerBase
     }
     
     [HttpDelete("ExcluirAutor/{idAutor}")]
-    public async Task<ActionResult<ResponseModel<List<AutorModel>>>> ExcluirAutor(int idLivro)
+    public async Task<ActionResult<ResponseModel<List<AutorModel>>>> ExcluirAutor(int idAutor)
     {
-        var autor = await _autorInterface.ExcluirAutor(idLivro);
+        var autor = await _autorInterface.ExcluirAutor(idAutor);
         return Ok(autor);
     }
 }
