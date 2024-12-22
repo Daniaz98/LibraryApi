@@ -1,3 +1,4 @@
+using LibraryApi.Dto.Autor;
 using LibraryApi.Models;
 using LibraryApi.Services.Autor;
 using Microsoft.AspNetCore.Mvc;
@@ -30,10 +31,31 @@ public class AutorController : ControllerBase
         return Ok(autor);
     }
     
-    [HttpGet("BusacaAutorPorLivroId/{idLivro}")]
-    public async Task<ActionResult<ResponseModel<AutorModel>>> BusacaAutorPorLivroId(int idLivro)
+    [HttpGet("BuscarAutorPorIdLivro/{idLivro}")]
+    public async Task<ActionResult<ResponseModel<AutorModel>>> BuscarAutorPorIdLivro(int idLivro)
     {
-        var autor = await _autorInterface.BuscarAutorPorId(idLivro);
+        var autor = await _autorInterface.BuscarAutorPorIdLivro(idLivro);
+        return Ok(autor);
+    }
+
+    [HttpPost("CriarAutor")]
+    public async Task<ActionResult<ResponseModel<List<AutorModel>>>> CriarAutor(AutorCriacaoDto autorCriacaoDto)
+    {
+        var autores = await _autorInterface.CriarAutor(autorCriacaoDto);
+        return Ok(autores);
+    }
+    
+    [HttpPut("EditarAutor")]
+    public async Task<ActionResult<ResponseModel<List<AutorModel>>>> EditarAutor(AutorEdicaoDto autorEdicaoDto)
+    {
+        var autores = await _autorInterface.EditarAutor(autorEdicaoDto);
+        return Ok(autores);
+    }
+    
+    [HttpDelete("ExcluirAutor/{idAutor}")]
+    public async Task<ActionResult<ResponseModel<List<AutorModel>>>> ExcluirAutor(int idLivro)
+    {
+        var autor = await _autorInterface.ExcluirAutor(idLivro);
         return Ok(autor);
     }
 }
